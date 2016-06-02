@@ -1,0 +1,139 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Admin_Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>My Shop | Administration</title>
+    <link href="~/content/bootstrap.css" rel="stylesheet" />
+    <link href="~/content/custom.css" rel="stylesheet" />
+    <link href="~/content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/content/jasny-bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a id="home" href="~/Admin" runat="server" class="navbar-brand">My Shop</a>
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main" style="height: 1px;">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="products" href="#">Products <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Products" runat="server">View Products</a></li>
+                            <li><a href="~/Admin/Products/Add.aspx" runat="server">Add a Product</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Products/Categories" runat="server">View Product Categories</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="suppliers" href="#">Suppliers <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Suppliers" runat="server">View Suppliers</a></li>
+                            <li><a href="~/Admin/Suppliers/Add.aspx" runat="server">Add a Supplier</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Suppliers/Items.aspx" runat="server">View Supplier Items</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="inventory" href="#">Inventory <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Inventory" runat="server">View Inventory</a></li>
+                            <li><a href="~/Admin/Inventory/Critical.aspx" runat="server">View Items in Critical Level</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Inventory/Releasing.aspx" runat="server">View Released Items</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="orders" href="#">Orders <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Orders" runat="server">View Orders</a></li>
+                            <li><a href="~/Admin/Orders/Pending.aspx" runat="server">View Pending Orders</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="purchases" href="#">Purchases <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Purchases/" runat="server">View Purchase Orders</a></li>
+                            <li><a href="~/Admin/Purchases/Pending.aspx" runat="server">View Pending Purchase Orders</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Purchases/Receiving.aspx" runat="server">View Received Items</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="deliveries" href="#">Deliveries <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Deliveries" runat="server">View Deliveries</a></li>
+                            <li><a href="~/Admin/Deliveries/Pending.aspx" runat="server">View Pending Deliveries</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="reports" href="#">Reports <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Reports/Users.aspx" runat="server">Users Master List</a></li>
+                            <li><a href="~/Admin/Reports/Products.aspx" runat="server">Products Master List</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Reports/Inventory.aspx" runat="server">Inventory Report</a></li>
+                            <li><a href="~/Admin/Reports/Orders.aspx" runat="server">Orders Report</a></li>
+                            <li><a href="~/Admin/Reports/Purchases.aspx" runat="server">Purchase Orders Report</a></li>
+                            <li><a href="~/Admin/Reports/Sales.aspx" runat="server">Sales Report</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Reports/Logs.aspx" runat="server">Audit Logs</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="users" href="#">Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/Users" runat="server">View Users</a></li>
+                            <li><a href="~/Admin/Users/Add.aspx" runat="server">Add a User</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Users/Logs.aspx" runat="server">View System Logs</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li id="user" runat="server" class="dropdown" visible="true">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <asp:Literal ID="ltUser" runat="server" Text="John Doe" /> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Admin/MyProfile.aspx" runat="server">View Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="~/Admin/Logout.aspx" runat="server">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="clearfix">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1><asp:ContentPlaceHolder ID="title" runat="server" /></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <asp:ContentPlaceHolder ID="content" runat="server" />
+            </div>
+        </div>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Made by <a href="#">Zaguirre, Sheila</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/jquery-1.9.1.min.js") %>'></script>
+    <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/bootstrap.min.js") %>'></script>
+    <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/jasny-bootstrap.min.js") %>'></script>
+</body></html>
