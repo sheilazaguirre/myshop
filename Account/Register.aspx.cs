@@ -15,7 +15,7 @@ public partial class Account_Register : System.Web.UI.Page
 
     bool IsExisting(string email)
     {
-        bool existing = false; //initial value
+        bool existing = false; // initial value
         using (SqlConnection con = new SqlConnection(Util.GetConnection()))
         {
             con.Open();
@@ -41,11 +41,12 @@ public partial class Account_Register : System.Web.UI.Page
             using (SqlConnection con = new SqlConnection(Util.GetConnection()))
             {
                 con.Open();
-                string SQL = @"INSERT INTO Users VALUES
+                string SQL = @"INSERT INTO Users VALUES 
                     (@TypeID, @Email, @Password, @FirstName,
                     @LastName, @Street, @Municipality, @City,
                     @Phone, @Mobile, @Status, @DateAdded,
                     @DateModified)";
+
                 using (SqlCommand cmd = new SqlCommand(SQL, con))
                 {
                     cmd.Parameters.AddWithValue("@TypeID", 5);
