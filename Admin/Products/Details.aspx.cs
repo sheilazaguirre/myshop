@@ -11,4 +11,8 @@ public partial class Admin_Products_Details : System.Web.UI.Page
     {
 
     }
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+
+    }
 }

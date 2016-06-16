@@ -75,7 +75,7 @@
             <span class="pull-right">
                 <asp:Button ID="btnCancel" runat="server" class="btn btn-default" Text="Cancel"
                     PostBackUrl="~/Admin/Products/Default.aspx" formnovalidate />
-                <asp:Button ID="btnUpdate" runat="server" class="btn btn-success" Text="Update" />
+                <asp:Button ID="btnUpdate" runat="server" class="btn btn-success" Text="Update" OnClick="btnUpdate_Click"/>
             </span>
         </div>
     </form>
