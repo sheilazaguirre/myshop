@@ -133,7 +133,7 @@
             </div>
         </footer>
     </div>
-    <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/jquery-1.9.1.min.js") %>'></script>
+    <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/jquery-1.11.3.min.js") %>'></script>
     <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/bootstrap.min.js") %>'></script>
     <script type="text/javascript" src='<%= Page.ResolveUrl("~/scripts/jasny-bootstrap.min.js") %>'></script>
 </body></html>
