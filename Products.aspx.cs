@@ -11,10 +11,30 @@ public partial class Products : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Request.QueryString["c"] != null) // category is selected
         {
-            GetProducts();
-            GetCategories();
+            int catID = 0;
+            bool validCategory =
+                int.TryParse(Request.QueryString["c"].ToString(),
+                out catID);
+            if (validCategory)
+            {
+                if (!IsPostBack)
+                {
+                    GetCategories();
+                    GetProducts(catID);
+                }
+            }
+            else
+                Response.Redirect("Products.aspx");
+        }
+        else
+        {
+            if (!IsPostBack)
+            {
+                GetProducts();
+                GetCategories();
+            }
         }
     }
 
@@ -40,6 +60,34 @@ public partial class Products : System.Web.UI.Page
 
                     ltTotal.Text = ds.Tables[0].Rows.Count.ToString();
                     //con.Close();   --(optional)
+                }
+            }
+        }
+    }
+
+    //<summary>
+    // display products based from category
+    //
+    void GetProducts(int ID)
+    {
+        using (SqlConnection con = new SqlConnection(Util.GetConnection()))
+        {
+            con.Open();
+
+            string SQL = @"SELECT p.ProductID, p.Image, c.Category, p.Price, 
+                p.Name FROM Products p INNER JOIN Categories c
+                ON p.CatID = c.CatID WHERE p.CatID=@CatID";
+
+            using (SqlCommand cmd = new SqlCommand(SQL, con))
+            {
+                cmd.Parameters.AddWithValue("CatID", ID);
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "Products");
+                    lvProducts.DataSource = ds;
+                    lvProducts.DataBind();
                 }
             }
         }
