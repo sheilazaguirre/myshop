@@ -114,13 +114,4 @@ public partial class Products : System.Web.UI.Page
             }
         }
     }
-
-    protected void lvProducts_ItemCommand(object sender, ListViewCommandEventArgs e)
-    {
-        if (e.CommandName == "addtocart")
-        {
-            Literal ltProductID = (Literal)e.Item.FindControl("ltProductID");
-            Util.AddToCart(ltProductID.Text, "1");
-        }
-    }
 }

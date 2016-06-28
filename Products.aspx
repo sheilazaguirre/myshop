@@ -25,12 +25,9 @@
             </div>
         </div>
         <div class="col-lg-9">
-            <asp:ListView ID="lvProducts" runat="server"
-                OnItemCommand="lvProducts_ItemCommand">
+            <asp:ListView ID="lvProducts" runat="server">
                 <ItemTemplate>
                     <div class="col-lg-4">
-                        <asp:Literal ID="ltProductID" runat="server"
-                            Text='<%# Eval("ProductID") %>' Visible="false"/>
                         <a href='Details.aspx?ID=<%# Eval("ProductID") %>'>
                         <div class="thumbnail">
                             <div style="position:relative; width: 100%; height: 0; 
@@ -44,8 +41,7 @@
                                     <h4><%# Eval("Category") %></h4>
                                     Php<%#Eval("Price", "{0: #,###.00}") %>
                                     <asp:LinkButton ID="btnAddtoCart" runat="server"
-                                        class="btn btn-success btn-lg"
-                                        CommandName="addtocart">
+                                        class="btn btn-success btn-block">
                                         <i class="fa fa-plus"></i> Add to Cart
                                     </asp:LinkButton>
                                 </p>
