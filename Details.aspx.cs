@@ -71,4 +71,11 @@ public partial class Details : System.Web.UI.Page
             }
         }
     }
+
+    protected void btnAddToCart_Click(object sender, EventArgs e)
+    {
+        Util.AddToCart(Request.QueryString["ID"].ToString(),
+            txtQuantity.Text);
+        Response.Redirect("Products.aspx");
+    }
 }

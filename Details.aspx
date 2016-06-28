@@ -26,7 +26,7 @@
                         CssClass="form-control"
                         type="number" min="1" max="99" Text="1" required />
                     <span class="input-group-btn">
-                        <asp:Button ID="btnAddToCart" runat="server"
+                        <asp:Button ID="btnAddToCart" runat="server" OnClick="btnAddToCart_Click"
                             class="btn btn-success" Text="Add To Cart" />
                     </span>
                 </div>
