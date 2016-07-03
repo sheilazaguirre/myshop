@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
+<%@ Register Assembly="Recaptcha" Namespace="Recaptcha" TagPrefix="recaptcha" %>
+
 <%--<%@ Register Assembly="Recaptcha" Namespace="Recaptcha" TagPrefix="recaptcha" %>--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" Runat="Server">
@@ -52,15 +54,15 @@
                         required />
                 </div>
             </div>
-<%--            <div class="form-group">
+            <div class="form-group">
                 <div class="col-lg-offset-4 col-lg-8">
                     <recaptcha:RecaptchaControl 
-                        ID="rcRegister" runat="server"
+                        ID="reRegister" runat="server"
                         PublicKey="6LeqviATAAAAAJZrhGNtUhYx6yO2JQxBY0q-3NT_"
                         PrivateKey="6LeqviATAAAAAGJemPntv5f2W8A9HL5yGZ6jUiBo"
                         Theme="clean" />
                 </div>
-            </div>--%>
+            </div>
             <div class="form-group">
                 <div class="col-lg-offset-4 col-lg-8">
                     <asp:Button ID="btnRegister" runat="server"
