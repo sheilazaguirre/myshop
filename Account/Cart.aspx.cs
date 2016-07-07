@@ -14,6 +14,7 @@ public partial class Account_Cart : System.Web.UI.Page
         if (!IsPostBack)
         {
             GetCart();
+            GetPaymentSummary();
         }
     }
 
@@ -32,9 +33,11 @@ public partial class Account_Cart : System.Web.UI.Page
                 cmd.Parameters.AddWithValue("@OrderNo", 0);
                 cmd.Parameters.AddWithValue("@UserID", Session["userid"].ToString());
 
-                using (SqlDataReader sdr = cmd.ExecuteReader())
+                using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    lvCart.DataSource = sdr;
+                    btnCheckout.Visible = dr.HasRows;
+
+                    lvCart.DataSource = dr;
                     lvCart.DataBind();
                 }
             }
@@ -83,5 +86,32 @@ public partial class Account_Cart : System.Web.UI.Page
             }
         }
         GetCart();
+        GetPaymentSummary();
+    }
+
+    void GetPaymentSummary()
+    {
+        using (SqlConnection con = new SqlConnection(Util.GetConnection()))
+        {
+            con.Open();
+            string SQL = @"SELECT SUM(Amount) FROM OrderDetails
+                WHERE OrderNo=@OrderNo AND UserID=@UserID 
+                HAVING COUNT(RefNo) > 0";
+
+            using (SqlCommand cmd = new SqlCommand(SQL, con))
+            {
+                cmd.Parameters.AddWithValue("@OrderNo", 0);
+                cmd.Parameters.AddWithValue("@UserID",
+                    Session["userid"].ToString());
+                double amount = cmd.ExecuteScalar() == null ? 0 :
+                    Convert.ToDouble((decimal)cmd.ExecuteScalar());
+
+                ltGross.Text = (amount * .88).ToString("#,###,##0.00");
+                ltVAT.Text = (amount * .12).ToString("#,###,##0.00");
+                ltDelivery.Text = (amount * .05).ToString("#,###,##0.00");
+                ltTotal.Text = (amount * 1.05).ToString("#,###,##0.00");
+
+            }
+        }
     }
 }

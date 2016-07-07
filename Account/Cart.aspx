@@ -67,7 +67,40 @@
             </table>
         </div>
         <div class="col-lg-3 well">
-
+            <h3>Payment Summary</h3>
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td>Gross Amount</td>
+                        <td align="right">
+                            Php<asp:Literal ID="ltGross" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>VAT (12%)</td>
+                        <td align="right">
+                            Php<asp:Literal ID="ltVAT" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Fee</td>
+                        <td align="right">
+                            Php<asp:Literal ID="ltDelivery" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total Amount</td>
+                        <td align="right">
+                            Php<asp:Literal ID="ltTotal" runat="server" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <asp:LinkButton ID="btnCheckout" runat="server"
+                class="btn btn-success btn-lg btn-block"
+                PostBackUrl="~/Account/Checkout.aspx">
+                <i class="fa fa-money"></i> Checkout
+            </asp:LinkButton>
         </div>
     </form>
 </asp:Content>
