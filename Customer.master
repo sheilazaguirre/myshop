@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Customer.master.cs" Inherits="Customer" %>
- 
+
 <!DOCTYPE html>
- 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>My Shop</title>
@@ -14,9 +14,9 @@
             <div class="navbar-header">
                 <a id="home" href="~/Default.aspx" runat="server" class="navbar-brand">My Shop</a>
                 <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
             </div>
             <div class="navbar-collapse collapse" id="navbar-main" style="height: 1px;">
@@ -32,7 +32,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" id="products" href="#">Products <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a id="A4" runat="server" href="~/Products.aspx" >View All Products</a></li>
+                            <li><a id="A4" runat="server" href="~/Products.aspx">View All Products</a></li>
                             <li class="divider"></li>
                             <li><a id="A5" runat="server" href="~/Products.aspx?sort=name">Sort by Name</a></li>
                             <li><a id="A6" runat="server" href="~/Products.aspx?sort=price">Sort by Price</a></li>
@@ -45,17 +45,19 @@
                 <ul class="nav navbar-nav pull-right">
                     <li id="cart" runat="server">
                         <a href="#" data-toggle="modal" data-target="#myCart">
-                            <span class="badge">0</span> Cart 
+                            <span class="badge">
+                                <asp:Literal ID="ltTotal_Cart" runat="server" /></span> Cart 
                         </a>
                     </li>
                     <li id="user" runat="server" class="dropdown" visible="true">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <asp:Literal ID="ltUser" runat="server" Text="John Doe" /> <span class="caret"></span>
+                            <asp:Literal ID="ltUser" runat="server" Text="John Doe" />
+                            <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a id="A10" runat="server" href="~/Account/Profile.aspx">View Profile</a></li>
                             <li><a id="A11" runat="server" href="~/Account/Cart.aspx">View Cart</a></li>
-                            <li><a id="A12" runat="server" href="~/Account/Orders" >View Orders</a></li>
+                            <li><a id="A12" runat="server" href="~/Account/Orders">View Orders</a></li>
                             <li class="divider"></li>
                             <li><a id="A13" runat="server" href="~/Account/Logout.aspx">Logout</a></li>
                         </ul>
@@ -70,11 +72,54 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">My Cart</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">My Cart</h4>
                 </div>
                 <div class="modal-body">
-                    
+                    <table class="table table-hover">
+                        <thead>
+                            <th colspan="2">Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                        </thead>
+                        <tbody>
+                            <asp:ListView ID="lvCart" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <img src='../content/img/products/<%# Eval("Image") %>'
+                                                width="150" class="img-responsive" />
+                                        </td>
+                                        <td>
+                                            <a href='../Details.aspx?ID=<%# Eval("ProductID") %>'>
+                                                <%# Eval("Name") %> (<%# Eval("Code") %>)<br />
+                                                <small>Category: <%# Eval("Category") %></small>
+                                            </a>
+                                        </td>
+                                        <td>Php<%# Eval("Price", "{0: #,###,###.00}") %>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Quantity") %>
+                                        </td>
+                                        <td>Php<%# Eval("Amount", "{0: #,###,###.00}") %>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                                <EmptyDataTemplate>
+                                    <tr>
+                                        <td colspan="6">
+                                            <h2 class="text-center">No items found.
+                                            </h2>
+                                        </td>
+                                    </tr>
+                                </EmptyDataTemplate>
+                            </asp:ListView>
+                        </tbody>
+                    </table>
+                    <hr />
+                    <a runat="server" href="~/Account/Cart.aspx" class="btn btn-info pull-right">View Cart</a>
+                    <div class="row"></div>
                 </div>
             </div>
         </div>
@@ -84,7 +129,9 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1><asp:ContentPlaceHolder ID="title" runat="server" /></h1>
+                        <h1>
+                            <asp:ContentPlaceHolder ID="title" runat="server" />
+                        </h1>
                     </div>
                 </div>
             </div>

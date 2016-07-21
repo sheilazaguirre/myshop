@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Customer.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Account_Orders_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Site.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Admin_Orders_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" Runat="Server">
-    <i class="fa fa-shopping-cart"></i> My Orders
+    <i class="fa fa-shopping-cart"></i> View Orders
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="content" Runat="Server">
     <form runat="server" class="form-horizontal">

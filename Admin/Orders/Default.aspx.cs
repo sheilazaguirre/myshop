@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-public partial class Account_Orders_Default : System.Web.UI.Page
+public partial class Admin_Orders_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,9 +29,7 @@ public partial class Account_Orders_Default : System.Web.UI.Page
                 WHERE OrderNo = o.OrderNo) AS TotalItems, 
                 (SELECT SUM(Amount) FROM OrderDetails
                 WHERE OrderNo = o.OrderNo) * 1.05 AS TotalAmount
-                FROM Orders o INNER JOIN OrderDetails od
-                ON o.OrderNo = od.OrderNo 
-                WHERE od.UserID=@UserID
+                FROM Orders o 
                 ORDER BY o.DateOrdered DESC";
 
             using (SqlCommand cmd = new SqlCommand(SQL, con))
@@ -64,16 +62,13 @@ public partial class Account_Orders_Default : System.Web.UI.Page
                 WHERE OrderNo = o.OrderNo) AS TotalItems, 
                 (SELECT SUM(Amount) FROM OrderDetails
                 WHERE OrderNo = o.OrderNo) * 1.05 AS TotalAmount
-                FROM Orders o INNER JOIN OrderDetails od
-                ON o.OrderNo = od.OrderNo 
-                WHERE od.UserID=@UserID AND
-                (o.DateOrdered BETWEEN @start AND @end)
+                FROM Orders o 
+                WHERE o.DateOrdered BETWEEN @start AND @end
                 ORDER BY o.DateOrdered DESC";
 
             using (SqlCommand cmd = new SqlCommand(SQL, con))
             {
-                cmd.Parameters.AddWithValue("@UserID",
-                    Session["userid"].ToString());
+
                 cmd.Parameters.AddWithValue("@start", start);
                 cmd.Parameters.AddWithValue("@end",
                     end.AddDays(1).AddSeconds(-1));
@@ -89,7 +84,7 @@ public partial class Account_Orders_Default : System.Web.UI.Page
                 }
             }
 
-        }
+        } 
     }
 
     protected void SearchByDate(object sender, EventArgs e)
